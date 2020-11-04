@@ -1,6 +1,6 @@
 class TypesController < ApplicationController
   before_action :set_type, only: [:show, :edit, :update, :destroy]
-
+  before_action :select_bookmark, only: [:new, :edit]
   # GET /types
   # GET /types.json
   def index
@@ -70,5 +70,9 @@ class TypesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def type_params
       params.require(:type).permit(:theme, :link, :bookmark_id)
+    end
+
+    def select_bookmark
+      @bookmark = Bookmark.all.pluck(:category, :id)
     end
 end

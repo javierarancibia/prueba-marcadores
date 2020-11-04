@@ -14,28 +14,30 @@
   <tbody>
     <% @bookmarks.each do |bookmark| %>
       <tr>
-        <td><%= bookmark.category %></td>
+        <td><h3><%= bookmark.category %></td></h3>
         <td><%= bookmark.url %></td>
-
-        <td>
-        <% if bookmark.types %>
-          <ul><strong>Links</strong>
-            <% bookmark.types.each do |type| %>
-            <li>
-              <span><%= type.theme %></span>/
-              <span><%= type.link %></span>
-            </li>
-            <% end %>
-          <ul>
-        <% end %>
-        <td>
-
-
-
 
         <td><%= link_to 'Show', bookmark %></td>
         <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
         <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <td>
+        <% if bookmark.types %>
+            <% bookmark.types.each do |type| %>
+            <tr>
+             <td><%= type.theme %></span> / <span><%= type.link %></span></td>
+              <td><td><%= link_to 'X', type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Edit', edit_type_path(type.id) %></td>
+            </li>
+            <% end %>
+          </tr>
+        <% end %>
+        <td>
+        <br><br>
+
+
+
+
       </tr>
     <% end %>
   </tbody>
@@ -43,4 +45,5 @@
 
 <br>
 
-<%= link_to 'New Bookmark', new_bookmark_path %>
+<%= link_to 'Nuevo Marcador', new_bookmark_path %>
+<%= link_to  "Nuevo Tipo", new_type_path %>

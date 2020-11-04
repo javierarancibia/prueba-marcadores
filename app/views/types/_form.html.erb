@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :bookmark %>
-    <%= form.text_field :bookmark_id %>
+    <%= form.select :bookmark_id, options_for_select(@bookmark), prompt: 'Selecciona una categoria' %>
   </div>
 
   <div class="actions">
