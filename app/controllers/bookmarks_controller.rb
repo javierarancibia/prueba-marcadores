@@ -45,10 +45,10 @@ class BookmarksController < ApplicationController
     respond_to do |format|
       if @bookmark.update(bookmark_params)
         format.html { redirect_to @bookmark, notice: 'Bookmark was successfully updated.' }
-        format.json { render :show, status: :ok, location: @bookmark }
+        format.js { @bookmark }
       else
         format.html { render :edit }
-        format.json { render json: @bookmark.errors, status: :unprocessable_entity }
+        format.js { render :index }
       end
     end
   end

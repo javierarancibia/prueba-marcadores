@@ -13,9 +13,15 @@
   </thead>
 
   <tbody id="tbody">
-    <%= render @bookmarks %>
+    <% @bookmarks.each do |bookmark| %>
+      <tr id="bookmark_<%=bookmark.id%>">
+        <%= render bookmark %>
+      </tr>
+    <% end %>
+
   </tbody>
 </table>
+
     <h2>Subcategorias</h2>
     <%#= render @types %>
 
