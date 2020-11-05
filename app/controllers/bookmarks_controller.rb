@@ -6,6 +6,7 @@ class BookmarksController < ApplicationController
   def index
     @bookmarks = Bookmark.all
     @bookmark = Bookmark.new
+    @types = Type.all
   end
 
   # GET /bookmarks/1
@@ -71,5 +72,8 @@ class BookmarksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def bookmark_params
       params.require(:bookmark).permit(:category, :url)
+    end
+    def type_params
+      params.require(:type).permit(:theme, :link, :bookmark_id)
     end
 end

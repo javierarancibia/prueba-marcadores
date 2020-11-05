@@ -15,28 +15,44 @@
   <tbody id="tbody">
     <%= render @bookmarks %>
       
-
+    
 
         
-        <% if @bookmark.types %>
-            <% @bookmark.types.each do |type| %>
-            <tr>
-             <td><%= type.theme %></td>
-             <td><%= type.link %></td>
-              <td><%= link_to 'X', type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <td><%= link_to 'Edit', edit_type_path(type.id) %></td>
-            
-            <% end %>
-        <% end %>
-        <td>
+        
+       
         
   </tbody>
 </table>
+    <h2>Subcategorias</h2>
+    <%#= render @types %>
 
-<br>
+<% @types.each do |type| %>
+      <tr>
+        <td><%= type.theme %></td>
+        <td><%= type.link %></td>
+        <% if type.bookmark.nil? %>
+          <%= 'Bookmark vacio' %>
+        <% else %>
+        <td><% type.bookmark.category %>
+        <% end %>
+        <td><%= link_to 'Show', type %></td>
+        <td><%= link_to 'Edit', edit_type_path(type) %></td>
+        <td><%= link_to 'Destroy', type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+
+
+
+
+
+
+
+<br><br><br>
 
 <%= link_to 'Nuevo Marcador', new_bookmark_path %> /
 <%= link_to  "Nuevo Tipo", new_type_path %>
+
+<%= render 'types/form', type: @type%>
 
 
 

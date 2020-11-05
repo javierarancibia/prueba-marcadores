@@ -1,5 +1,7 @@
-<%= form_with(model: type, local: true) do |form| %>
-  <% if type.errors.any? %>
+<%= form_with(model: type, remote: true) do |form| %>
+  <%
+=begin%>
+ <% if type.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(type.errors.count, "error") %> prohibited this type from being saved:</h2>
 
@@ -10,7 +12,9 @@
       </ul>
     </div>
   <% end %>
-
+ 
+<%
+=end%>
   <div class="field">
     <%= form.label :theme %>
     <%= form.text_field :theme %>
@@ -21,10 +25,14 @@
     <%= form.text_field :link %>
   </div>
 
-  <div class="field">
+  <%
+=begin%>
+ <div class="field">
     <%= form.label :bookmark %>
     <%= form.select :bookmark_id, options_for_select(@bookmark), prompt: 'Selecciona una categoria' %>
-  </div>
+  </div> 
+<%
+=end%>
 
   <div class="actions">
     <%= form.submit %>
