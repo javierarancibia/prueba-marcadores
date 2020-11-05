@@ -17,7 +17,6 @@
         <td><h3><%= bookmark.category %></td></h3>
         <td><%= bookmark.url %></td>
 
-        <td><%= link_to 'Show', bookmark %></td>
         <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
         <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
@@ -34,10 +33,6 @@
         <% end %>
         <td>
         <br><br>
-
-
-
-
       </tr>
     <% end %>
   </tbody>
@@ -45,5 +40,9 @@
 
 <br>
 
-<%= link_to 'Nuevo Marcador', new_bookmark_path %>
+<%= link_to 'Nuevo Marcador', new_bookmark_path %> /
 <%= link_to  "Nuevo Tipo", new_type_path %>
+
+
+
+
