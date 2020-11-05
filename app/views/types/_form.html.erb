@@ -25,14 +25,10 @@
     <%= form.text_field :link %>
   </div>
 
-  <%
-=begin%>
- <div class="field">
+  <div class="field">
     <%= form.label :bookmark %>
     <%= form.select :bookmark_id, options_for_select(@bookmark), prompt: 'Selecciona una categoria' %>
-  </div> 
-<%
-=end%>
+  </div>
 
   <div class="actions">
     <%= form.submit %>
