@@ -22,7 +22,7 @@
   </tbody>
 </table>
 
-    <h2>Subcategorias</h2>
+    <h2>Categorias / Subcategorias</h2>
     <%#= render @types %>
 
 <% @types.each do |type| %>
@@ -45,7 +45,28 @@
 <%= link_to 'Nuevo Marcador', new_bookmark_path %> /
 <%= link_to  "Nuevo Tipo", new_type_path %>
 
-<%#= render 'types/form', type: @type%>
+<%#= render 'types/form', type: @type %>
+
+<%= form_with(model: @type, remote: true) do |form| %>
+<div class="field">
+    <%= form.label :theme %>
+    <%= form.text_field :theme %>
+  </div>
+
+  <div class="field">
+    <%= form.label :link %>
+    <%= form.text_field :link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bookmark %>
+    <%= form.select :bookmark_id, options_for_select(@bookmarks.map { |cat| cat.category }), prompt: 'Selecciona una categoria' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
 
 
 

@@ -4,9 +4,10 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.json
   def index
-    @bookmarks = Bookmark.all.order('category')
+    @bookmarks = Bookmark.all
     @bookmark = Bookmark.new
     @types = Type.all
+    type = Type.new
   end
 
   # GET /bookmarks/1
@@ -75,5 +76,8 @@ class BookmarksController < ApplicationController
     end
     def type_params
       params.require(:type).permit(:theme, :link, :bookmark_id)
+    end
+    def select_bookmark
+      @bookmark_find = Bookmark.all.pluck(:category, :id)
     end
 end
