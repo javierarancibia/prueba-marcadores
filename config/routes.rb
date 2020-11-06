@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :bookmarks
   resources :types
   post '/type', to: 'types#create', as: "create_type"
+  get '/api/marcadores', to: 'bookmarks#get_api'
   # resources :bookmarks do
   #   resources :types, only: [:show]
   # end

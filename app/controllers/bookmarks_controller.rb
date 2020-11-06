@@ -12,6 +12,11 @@ class BookmarksController < ApplicationController
     @bookmarks_graphic = Bookmark.group(:category).count()
   end
 
+  def get_api
+    @bookmarks = Bookmark.all
+    render json: @bookmarks
+  end
+
   # GET /bookmarks/1
   # GET /bookmarks/1.json
   def show

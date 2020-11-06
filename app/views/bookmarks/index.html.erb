@@ -35,7 +35,7 @@
 <h2>Crea tus tematicas</h2>
 <%= form_with(model: @type, url: create_type_path, method: :post, remote: true) do |form| %>
   <div class="field">
-    <%= form.label :theme %>
+    <%= form.label :Subcategoria %>
     <%= form.text_field :theme %>
   </div>
 
@@ -45,7 +45,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :bookmark %>
+    <%= form.label :elige_un_marcador %>
     <%= form.select :bookmark_id, options_for_select(@bookmarks.pluck(:category, :id)), remote: true, prompt: 'Selecciona una categoria' %>
   </div>
 
