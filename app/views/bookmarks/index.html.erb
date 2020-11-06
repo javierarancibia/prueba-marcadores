@@ -3,7 +3,6 @@
 <%= link_to  "Nuevo Tipo (Modo HTML)", new_type_path %>
 
 <h1>Crea tus marcadores</h1>
-
 <%= render 'form', bookmark: @bookmark%>
 
 <table>
@@ -24,6 +23,10 @@
   </tbody>
 </table>
 
+  </tbody>
+
+<%= column_chart @bookmarks_graphic %>
+<%= pie_chart @bookmarks_graphic %>
 
 <h2>Crea tus tematicas</h2>
 <%= form_with(model: @type, url: create_type_path, method: :post, remote: true) do |form| %>

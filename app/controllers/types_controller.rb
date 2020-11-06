@@ -43,10 +43,10 @@ class TypesController < ApplicationController
     respond_to do |format|
       if @type.update(type_params)
         format.html { redirect_to @type, notice: 'Type was successfully updated.' }
-        format.json { render :show, status: :ok, location: @type }
+        format.js { render :show, status: :ok, location: @type }
       else
         format.html { render :edit }
-        format.json { render json: @type.errors, status: :unprocessable_entity }
+        format.js { render json: @type.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +57,7 @@ class TypesController < ApplicationController
     @type.destroy
     respond_to do |format|
       format.html { redirect_to bookmarks_url, notice: 'Type was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { @type}
     end
   end
 

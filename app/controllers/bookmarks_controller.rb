@@ -8,6 +8,8 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.new
     @types = Type.all
     @type = Type.new
+
+    @bookmarks_graphic = Bookmark.group(:category).count()
   end
 
   # GET /bookmarks/1
