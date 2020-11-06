@@ -79,20 +79,22 @@
 
 <div class="card-columns">
    <% @types.reverse.each do |type| %>
-     <div class="card">
+     <div class="card bg-info text-white">
+     <div class="card-body">
    <% if type.bookmark.nil? %>
-      <h5><%= 'Marcador vacio' %></h5>
+      <h5 class="text-danger"><%= 'Marcador vacio' %></h5>
     <% else %>
     
-      <h5 class="card-title "><%= type.bookmark.category %></h5>
+      <h5 class="card-title text-white"><%= type.bookmark.category %></h5>
     <% end %>
        <div class="card-block">
         <p class="card-text"><%= type.theme %></p>
         <p class="card-text"><%= type.link %></p>
-        <span class="card-text"><%= link_to 'Editar', edit_type_path(type) %></span>
-        <span class="card-text"><%= link_to 'Borrar', type, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></span>
+        <span class="card-text text-white"><%= link_to 'Editar', edit_type_path(type) %></span>
+        <span class="card-text text-white"><%= link_to 'Borrar', type, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></span>
        </div>
      </div>
+    </div>
    <% end %>
 </div>
 <br><br><br>
