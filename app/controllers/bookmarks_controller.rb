@@ -7,7 +7,7 @@ class BookmarksController < ApplicationController
     @bookmarks = Bookmark.all
     @bookmark = Bookmark.new
     @types = Type.all
-    type = Type.new
+    @type = Type.new
   end
 
   # GET /bookmarks/1
@@ -77,7 +77,7 @@ class BookmarksController < ApplicationController
     def type_params
       params.require(:type).permit(:theme, :link, :bookmark_id)
     end
-    def select_bookmark
-      @bookmark_find = Bookmark.all.pluck(:category, :id)
-    end
+    # def select_bookmark
+    #   @bookmark_find = Bookmark.all.pluck(:category, :id)
+    # end
 end

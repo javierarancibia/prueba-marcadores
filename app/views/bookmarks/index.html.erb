@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
+<%= link_to 'Nuevo Marcador (modo HTML)', new_bookmark_path %> /
+<%= link_to  "Nuevo Tipo (Modo HTML)", new_type_path %>
 
-<h1>Bookmarks</h1>
+<h1>Crea tus marcadores</h1>
 
 <%= render 'form', bookmark: @bookmark%>
 
@@ -22,33 +24,10 @@
   </tbody>
 </table>
 
-    <h2>Categorias / Subcategorias</h2>
-    <%#= render @types %>
 
-<% @types.each do |type| %>
-  <tr>
-    <% if type.bookmark.nil? %>
-      <%= 'Bookmark vacio' %>
-    <% else %>
-      <td><%= type.bookmark.category %></td>
-    <% end %>
-    <ul>
-      <li><%= type.theme %></li>
-      <li><%= type.link %></li>
-      <td><%= link_to 'Editar', edit_type_path(type) %></td>
-      <td><%= link_to 'Borrar', type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </ul>
-  </tr>
-<% end %>
-<br><br><br>
-
-<%= link_to 'Nuevo Marcador', new_bookmark_path %> /
-<%= link_to  "Nuevo Tipo", new_type_path %>
-
-<%#= render 'types/form', type: @type %>
-
-<%= form_with(model: @type, remote: true) do |form| %>
-<div class="field">
+<h2>Crea tus tematicas</h2>
+<%= form_with(model: @type, url: create_type_path, method: :post, remote: true) do |form| %>
+  <div class="field">
     <%= form.label :theme %>
     <%= form.text_field :theme %>
   </div>
@@ -60,13 +39,37 @@
 
   <div class="field">
     <%= form.label :bookmark %>
-    <%= form.select :bookmark_id, options_for_select(@bookmarks.map { |cat| cat.category }), prompt: 'Selecciona una categoria' %>
+    <%= form.select :bookmark_id, options_for_select(@bookmarks.pluck(:category, :id)), remote: true, prompt: 'Selecciona una categoria' %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+    <h2>Categorias / Subcategorias</h2>
+    <%#= render @types %>
+<% @types.each do |type| %>
+  <tr>
+    <% if type.bookmark.nil? %>
+      <%= 'Marcador vacio' %>
+    <% else %>
+      <td><%= type.bookmark.category %></td>
+    <% end %>
+    <ul>
+      <li><%= type.theme %></li>
+      <li><%= type.link %></li>
+      <td><%= link_to 'Editar', edit_type_path(type), remote: true %></td>
+      <td><%= link_to 'Borrar', type, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
+    </ul>
+  </tr>
+<% end %>
+<br><br><br>
+
+
+
+<%#= render 'types/form', type: @type %>
+</tbody>
 
 
 

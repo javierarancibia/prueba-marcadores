@@ -1,5 +1,8 @@
 {
   "name": "nested_AJAX",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "popper": "^1.0.1"
+  }
 }
