@@ -1,6 +1,11 @@
-<p id="notice"><%= notice %></p>
-<%= link_to 'Nuevo Marcador (modo HTML)', new_bookmark_path %> /
-<%= link_to  "Nuevo Tipo (Modo HTML)", new_type_path %>
+<div class="jumbotron bg-secondary">
+        <h1 class="text-white">Creador de marcadores</h1>
+        <%=link_to 'Nuevo Marcador (modo HTML)', new_bookmark_path, class: 'btn btn-info mx-5 my-5 text-white' %>
+        <%= link_to  "Nuevo Tipo (Modo HTML)", new_type_path, class: 'btn btn-info mx-5 text-white' %>
+        <%= link_to  "Marcadores en formato JSON", get_api_path, class: 'btn btn-info mx-5 text-white' %>
+</div>
+
+
 
 <h2 style="margin-bottom:20px; margin-top:20px;">Crea tus marcadores</h2>
 <%= render 'form', bookmark: @bookmark%>
@@ -36,12 +41,12 @@
 <%= form_with(model: @type, url: create_type_path, method: :post, remote: true) do |form| %>
   <div class="field">
     <%= form.label :Subcategoria %>
-    <%= form.text_field :theme %>
+    <%= form.text_field :theme, class:"input-group", placeholder: 'Ingresa una subcategoria' %>
   </div>
 
   <div class="field">
     <%= form.label :link %>
-    <%= form.text_field :link %>
+    <%= form.text_field :link, class:"input-group", placeholder: 'Ingresa un Link' %>
   </div>
 
   <div class="field">
@@ -50,7 +55,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Guardar', class: "btn btn-info mb-5 btn-block" %>
   </div>
 <% end %>
 

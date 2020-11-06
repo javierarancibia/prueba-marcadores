@@ -11,9 +11,9 @@
     </div>
   <% end %>
   
-    <%= form.text_field :category, placeholder: 'Categoria' %>
+    <%= form.text_field :category, class:"input-group my-3", placeholder: 'Categoria' %>
 
-    <%= form.text_field :url, placeholder: 'Link' %> 
+    <%= form.text_field :url, class:"input-group my-3", placeholder: 'Link' %> 
   
-    <%= form.submit 'Guardar', data: { disabled_with: 'Guardando...' } %>
+    <%= form.submit 'Guardar', class: "btn btn-info mb-5 btn-block", data: { disabled_with: 'Guardando...' } %>
 <% end %>
