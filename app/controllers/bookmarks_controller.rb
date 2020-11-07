@@ -9,7 +9,6 @@ class BookmarksController < ApplicationController
     @type = Type.new
     @q = Bookmark.ransack(params[:q])
     @bookmarks = @q.result(distinct: true)
-    @bookmarks_all = Bookmark.all
 
     @types_graphic = Type.group(:theme).count()
     @bookmarks_graphic = Bookmark.group(:category).count()
