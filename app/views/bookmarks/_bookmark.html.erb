@@ -1,5 +1,6 @@
     <td><%= bookmark.category %></td>
     <td><%= bookmark.url %></td>
+    <td><%= bookmark.status %></td>
     
     <td><%= link_to 'Editar', edit_bookmark_path(bookmark), remote: true %></td>
     <td><%= link_to 'Borrar', bookmark, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
