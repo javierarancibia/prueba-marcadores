@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Theme</th>
+      <th>Link</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.theme %></td>
+        <td><%= category.link %></td>
+        <td><%= category.bookmark unless category.bookmark.nil? %></td>
+        <td><%= link_to 'Show', category %></td>
+        <td><%= link_to 'Edit', edit_category_path(category) %></td>
+        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Type', new_type_path %>

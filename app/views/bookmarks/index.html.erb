@@ -1,13 +1,13 @@
 <div class="jumbotron bg-light">
         <h1 class="text-secondary">Creador de marcadores</h1>
         <%=link_to 'Nuevo Marcador (modo HTML)', new_bookmark_path, class: 'btn btn-info mx-5 my-5 text-white' %>
-        <%= link_to  "Nuevo Tipo (Modo HTML)", new_type_path, class: 'btn btn-info mx-5 text-white' %>
-        <%= link_to  "Marcadores en formato JSON", get_api_path, class: 'btn btn-info mx-5 text-white' %>
+        <%= link_to  "Nuevo Tipo (Modo HTML)", new_category_path, class: 'btn btn-info mx-5 text-white' %>
+        <%= link_to  "Categorias en formato JSON", get_api_path, class: 'btn btn-info mx-5 text-white' %>
 </div>
 
 
 
-<h2 style="margin-bottom:20px; margin-top:20px;">Crea tus marcadores</h2>
+<h2 style="margin-bottom:20px; margin-top:20px;">Crea tus marcadores (con Ajax)</h2>
 <%= render 'form', bookmark: @bookmark%>
 
 <%= search_form_for @q do |f| %>
@@ -21,7 +21,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Categorias</th>
       <th>Link</th>
       <th colspan="3"></th>
     </tr>
@@ -45,22 +44,30 @@
 <%= column_chart @bookmarks_graphic %>
 <%= pie_chart @types_graphic %>
 
-<h2>Crea tus tematicas</h2>
-<%= form_with(model: @type, url: create_type_path, method: :post, remote: true) do |form| %>
-  <div class="field">
-    <%= form.label :Subcategoria %>
-    <%= form.text_field :theme, class:"input-group", placeholder: 'Ingresa una subcategoria' %>
-  </div>
+<h2>Crea tu Categoria</h2>
+<%= form_with(model: @category, url: create_category_path, method: :post, remote: true) do |form| %>
 
   <div class="field">
-    <%= form.label :link %>
-    <%= form.text_field :link, class:"input-group", placeholder: 'Ingresa un Link' %>
+    <%= form.label :crear_categoria %>
+    <%= form.text_field :name, class:"input-group", placeholder: 'Crea una categoria' %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :elige_una_subcategoria %>
+    <%= form.select :subcategory_id, options_for_select(@subcategories.pluck(:name, :id)), remote: true, prompt: 'Selecciona una subcategoria' %>
   </div>
 
   <div class="field">
     <%= form.label :elige_un_marcador %>
-    <%= form.select :bookmark_id, options_for_select(@bookmarks.pluck(:category, :id)), remote: true, prompt: 'Selecciona una categoria' %>
+    <%= form.select :bookmark_id, options_for_select(@bookmarks.pluck(:url, :id)), remote: true, prompt: 'Selecciona un marcador' %>
   </div>
+
+  <div class="field">
+    <%= form.label :elige_un_tipo %>
+    <%= form.select :kind_id, options_for_select(@kinds.pluck(:name, :id)), remote: true, prompt: 'Selecciona un tipo' %>
+  </div>
+
 
   <div class="actions">
     <%= form.submit 'Guardar', class: "btn btn-info mb-5 btn-block" %>
@@ -91,21 +98,23 @@
 =end%>
 
 <div class="card-columns">
-   <% @types.reverse.each do |type| %>
+   <% @categories.reverse.each do |category| %>
      <div class="card bg-info text-white">
      <div class="card-body">
-   <% if type.bookmark.nil? %>
+   <% if category.bookmark.nil? %>
       <h5 class="text-danger"><%= 'Marcador vacio / Sin Categoria' %></h5>
       <p class="text-danger"><%= 'Marcador sin Estado' %></p>
     <% else %>
-          <h5 class="card-title text-white">Categoria: <%= type.bookmark.category %></h5>
-          <p class="card-text"><%= type.bookmark.status %></p>
+          <h5 class="card-title text-white">Categoria: <%= category.name %></h5>
+          <h6 class="card-title text-white">Marcador: <%= category.bookmark.url %></h6>
+          <h6 class="card-title text-white">Estado: <%= category.bookmark.status %></h6>
     <% end %>
        <div class="card-block">
-        <p class="card-text">Subcategoria: <%= type.theme %></p>
-        <p class="card-text"><%= type.link %></p>
-        <span class="card-text text-white"><%= link_to 'Editar', edit_type_path(type) %></span>
-        <span class="card-text text-white"><%= link_to 'Borrar', type, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></span>
+        <p class="card-text">Subcategoria: <%= category.subcategory.name %></p>
+        <p class="card-text">Tipo: <%= category.kind.name %></p>
+        <p class="card-text"><%#= category.link %></p>
+        <span class="card-text text-white"><%= link_to 'Editar', edit_category_path(category) %></span>
+        <span class="card-text text-white"><%= link_to 'Borrar', category, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></span>
        </div>
      </div>
     </div>

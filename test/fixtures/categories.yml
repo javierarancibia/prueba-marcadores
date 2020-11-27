@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  subcategory: one
+  bookmark: one
+  type: one
+
+two:
+  name: MyString
+  subcategory: two
+  bookmark: two
+  type: two

@@ -10,23 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_07_011440) do
+ActiveRecord::Schema.define(version: 2020_11_27_185559) do
 
   create_table "bookmarks", force: :cascade do |t|
-    t.string "category"
     t.string "url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status"
   end
 
-  create_table "types", force: :cascade do |t|
-    t.string "theme"
-    t.string "link"
-    t.integer "bookmark_id"
+  create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bookmark_id"], name: "index_types_on_bookmark_id"
+    t.integer "bookmark_id"
+    t.integer "kind_id"
+    t.string "name", default: "Sin Definir"
+    t.integer "subcategory_id"
+    t.index ["bookmark_id"], name: "index_categories_on_bookmark_id"
+    t.index ["kind_id"], name: "index_categories_on_kind_id"
+    t.index ["subcategory_id"], name: "index_categories_on_subcategory_id"
+  end
+
+  create_table "kinds", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subcategories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

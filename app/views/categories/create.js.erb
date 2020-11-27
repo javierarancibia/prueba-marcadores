@@ -1,0 +1,12 @@
+// document.querySelector('#type').innerHTML += '<%= @type.theme %>' +  '<%= @type.link %>'
+
+
+var type_category = document.createTextNode('<%= @category.bookmark.url %>')
+var category_theme = document.createTextNode('<%= @category.subcategory %>')
+var category_link = document.createTextNode('<%= @category.link %>')
+var li = document.createElement('li')
+
+li.appendChild(category_subcategory)
+li.appendChild(category_theme)
+li.appendChild(category_link)
+document.body.appendChild(li)

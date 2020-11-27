@@ -5,20 +5,20 @@ class BookmarksController < ApplicationController
   # GET /bookmarks.json
   def index
     @bookmark = Bookmark.new
-    @types = Type.all
-    @type = Type.new
+    @categories = Category.all
+    @kinds = Kind.all
+    @category = Category.new
     @q = Bookmark.ransack(params[:q])
     @bookmarks = @q.result(distinct: true)
-    @bookmarks_all = Bookmark.all
-
-    @types_graphic = Type.group(:theme).count()
-    @bookmarks_graphic = Bookmark.group(:category).count()
+    @subcategories = Subcategory.all
+    @types_graphic = Kind.group(:name).count()
+    @bookmarks_graphic = Kind.group(:name).count()
   end
 
-  def get_api
-    @bookmarks = Bookmark.all
-    render json: @bookmarks
-  end
+  # def get_api
+  #   @bookmarks = Bookmark.all
+  #   render json: @bookmarks
+  # end
 
   # GET /bookmarks/1
   # GET /bookmarks/1.json
@@ -82,7 +82,7 @@ class BookmarksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bookmark_params
-      params.require(:bookmark).permit(:category, :url, :status)
+      params.require(:bookmark).permit(:url, :status)
     end
     def type_params
       params.require(:type).permit(:theme, :link, :bookmark_id)

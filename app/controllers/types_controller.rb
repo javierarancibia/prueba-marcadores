@@ -12,6 +12,11 @@ class TypesController < ApplicationController
   def show
   end
 
+  def get_api
+    @types = Type.all
+    render json: @types
+  end
+
   # GET /types/new
   def new
     @type = Type.new
@@ -73,6 +78,6 @@ class TypesController < ApplicationController
     end
 
     def select_bookmark
-      @bookmark = Bookmark.all.pluck(:category, :id)
+      @bookmark = Bookmark.all.pluck(:url, :id)
     end
 end

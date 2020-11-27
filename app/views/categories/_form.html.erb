@@ -1,4 +1,4 @@
-<%= form_with(model: type, remote: true) do |form| %>
+<%= form_with(model: category, remote: true) do |form| %>
   <%
 =begin%>
  <% if type.errors.any? %>
@@ -16,18 +16,18 @@
 <%
 =end%>
   <div class="field">
-    <%= form.label :theme %>
-    <%= form.text_field :theme %>
+    <%= form.label :subcategory %>
+    <%= form.text_field :subcategory %>
   </div>
 
   <div class="field">
-    <%= form.label :link %>
-    <%= form.text_field :link %>
+    <%#= form.label :link %>
+    <%#= form.text_field :link %>
   </div>
 
   <div class="field">
     <%= form.label :bookmark %>
-    <%= form.select :bookmark_id, options_for_select(@bookmark), prompt: 'Selecciona una categoria' %>
+    <%= form.select :bookmark_id, options_for_select(@bookmark), prompt: 'Selecciona un marcador' %>
   </div>
 
   <div class="actions">
